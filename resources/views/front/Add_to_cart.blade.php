@@ -297,7 +297,10 @@
 							<li class="subtitle"><p>Total <span class="float-right totals color-orose">₹{{$result->total_field_name}}</span></p></li>
 						</ul>
 						<div class="ui_kit_button payment_widget_btn">
-						<a href="{{url('stripe-payment')}}" class="btn dbxshad btn-lg btn-thm btn-block">Proceed to checkout</button></a>
+						<a href="{{url('stripe-payment')}}" class="btn dbxshad btn-lg btn btn-danger btn-block">Stripe payment</button></a>
+						</div>
+						<div class="ui_kit_button payment_widget_btn">
+						<a href="{{url('stripe-payment')}}" class="btn dbxshad btn btn-primary btn-block"style="font-size:20px">Paypal Payment</button></a>
 						</div>
 					</div>
 				</div>

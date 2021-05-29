@@ -185,7 +185,7 @@ class AddtocartController extends Controller
                 "source" => $request->stripeToken,
                 "description" => "Making test payment." 
         ]);
-  
+        
         Session::flash('success', 'Payment has been successfully processed.');
           
         return back();

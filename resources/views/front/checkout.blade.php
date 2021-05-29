@@ -92,7 +92,7 @@
   
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-danger btn-lg btn-block" type="submit">Pay Now (₹100)</button>
+                                <button class="btn btn-danger btn-lg btn-block" name="stripe" type="submit">Pay Now (₹100)</button>
                             </div>
                         </div>
                           
