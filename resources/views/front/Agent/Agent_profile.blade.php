@@ -13,7 +13,7 @@
                 <h4>Profile Information</h4>
             </div>
             <div class="col-xl-10">
-                <form action="{{route('/agent/profile/add')}}" name="myform" onsubmit="return validate()" method="post"enctype="multipart/form-data">
+                <form action="{{route('/agent/profile/add')}}" name="myform" onsubmit="return validate()" method="post" enctype="multipart/form-data">
                 @csrf
                     <div class="row">
                     <div class="col-lg-12">
@@ -43,7 +43,7 @@
                         <div class="col-lg-6 col-xl-6">
                             <div class="my_profile_setting_input form-group">
                                 <label for="formGroupExampleInput3">First Name</label>
-                                <input type="text" class="form-control" name="firstname" value="{{$Register->firstname}}" id="formGroupExampleInput3">
+                                <input type="text" class="form-control" name="firstname" value="{{$Register->firstname}}">
                                 <sapn id="fname" class="text-danger"></sapn>
                             </div>
                         </div>
@@ -97,14 +97,7 @@
                                 <sapn id="fbook" class="text-danger"></sapn>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                                <label for="formGroupExampleInput8">Instagram</label>
-                                <input type="text" class="form-control" name="instagram" value="{{$Register->Instagram}}" id="instagram">
-                                <sapn id="insta" class="text-danger"></sapn>
-                            </div>
-                        </div>
-
+                      
                         <div class="col-xl-12">
                             <div class="my_profile_setting_textarea">
                                 <label for="exampleFormControlTextarea1">About me</label>
@@ -114,7 +107,7 @@
                         </div>
                         <div class="col-xl-12 text-right">
                             <div class="my_profile_setting_input">
-                                <button class="btn btn1">View Public Profile</button>
+                                <button class="btn btn1" onclick="nirav()">View Public Profile</button>
                                 <button class="btn btn2">Update Profile</button>
                             </div>
                         </div>
@@ -125,18 +118,15 @@
     </div>
 </div>
 @endsection
+
 @section('custom_js')
 <script>
-function edit(id) {
-    $.get('/Agent/Edit/profile' + id, function(country) {
-        $("#id").val(country.id);
-        $("#country_name").val(country.country_name);
-
-    });
+function nirav(){
+   alert('jug');
 }
+
 function validate(){  
- var  username=document.myform.username.value;
- var email=document.myform.email.value;
+    
  var firstname=document.myform.firstname.value;
  var lastname=document.myform.lastname.value;
  var mobile=document.myform.mobile.value;
@@ -145,94 +135,74 @@ function validate(){
  var state_id=document.myform.state_id.value;
  var city_id=document.myform.city_id.value;
  var facebook=document.myform.facebook.value;
- var instagram=document.myform.instagram.value;
  var about=document.myform.about.value;
-if (username==null ||username ==""){  
-    document.getElementById("uname").innerHTML="Please Enter any value";  
-    return false; 
-    }
-    else{  
-    document.getElementById("uname").innerHTML="";
-    }
-    if (email==null ||email ==""){  
-    document.getElementById("email").innerHTML="Please Enter any value";  
-    return false; 
-    }
-    else{  
-    document.getElementById("email").innerHTML="";
-    }   
+   
     if (firstname==null ||firstname ==""){  
-    document.getElementById("fname").innerHTML="Please Enter firstname";  
+    document.getElementById("fname").innerHTML="Please Enter firstname.";  
     return false; 
     }
     else{  
-    //document.getElementById("fname").innerHTML="";
-    return false;
+        document.getElementById("fname").innerHTML=""; 
+  
     }   
     if (lastname==null ||lastname ==""){  
-    document.getElementById("lname").innerHTML="Please Enter lastname";  
+    document.getElementById("lname").innerHTML="Please Enter lastname.";  
     return false; 
     }
     else{  
     document.getElementById("lname").innerHTML="";
     }
     if (mobile==null || mobile==""){  
-        document.getElementById("contact").innerHTML=" please Enter value";  
+        document.getElementById("contact").innerHTML=" please Enter value.";  
         return false; 
     }else if (isNaN(mobile)){
-    document.getElementById("contact").innerHTML="please enter only digite";
+    document.getElementById("contact").innerHTML="please enter only digite.";
     return false; 
     }else if (mobile.length != 10){
-    document.getElementById("contact").innerHTML="please enter only  10 digite";
+    document.getElementById("contact").innerHTML="please enter only  10 digite.";
     return false; 
     }
     else{  
         document.getElementById("contact").innerHTML="";
     }    
     if (language==null ||language ==""){  
-    document.getElementById("langua").innerHTML="Please Enter language";  
+    document.getElementById("langua").innerHTML="Please Enter language.";  
     return false; 
     }
     else{  
     document.getElementById("langua").innerHTML="";
     }   
     if (country_id==null ||country_id ==""){  
-    document.getElementById("country").innerHTML="Please Enter country";  
+    document.getElementById("country").innerHTML="Please Enter country.";  
     return false; 
     }
     else{  
     document.getElementById("country").innerHTML="";
     } 
     if (state_id==null ||state_id ==""){  
-    document.getElementById("state").innerHTML="Please Enter state";  
+    document.getElementById("state").innerHTML="Please Enter state.";  
     return false; 
     }
     else{  
     document.getElementById("state").innerHTML="";
     } 
     if (city_id==null ||city_id ==""){  
-    document.getElementById("city").innerHTML="Please Enter city";  
+    document.getElementById("city").innerHTML="Please Enter city.";  
     return false; 
     }
     else{  
     document.getElementById("city").innerHTML="";
     } 
     if (facebook==null ||facebook ==""){  
-    document.getElementById("fbook").innerHTML="Please Enter facebook Name";  
+    document.getElementById("fbook").innerHTML="Please Enter facebook Name.";  
     return false; 
     }
     else{  
     document.getElementById("fbook").innerHTML="";
     } 
-    if (instagram==null ||instagram ==""){  
-    document.getElementById("insta").innerHTML="Please Enter instagram Name";  
-    return false; 
-    }
-    else{  
-    document.getElementById("insta").innerHTML="";
-    } 
+    
     if (about==null ||about ==""){  
-    document.getElementById("descript").innerHTML="Please Enter instagram Name";  
+    document.getElementById("descript").innerHTML="Please Enter instagram Name.";  
     return false; 
     }
     else{  

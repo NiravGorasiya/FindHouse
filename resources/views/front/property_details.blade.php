@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="{{asset('asset_front/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('asset_front/css/responsive.css')}}">
 <title>FindHouse - Real Estate HTML Template</title>
-<link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
-<link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" />
+<link href="{{asset('asset_front/images/favicon.ico')}}" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+<link href="{{asset('asset_front/images/favicon.ico')}}" sizes="128x128" rel="shortcut icon" />
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -51,9 +52,9 @@
 					<a href="{{url('contact')}}"><span class="title">Contact</span></a>
 		            </li>
 					<li class="last">
-				     @if(session()->has('FRONT_USER_EMAIL'))
-					<a href="{{url('add-to-cart/show')}}"><button class="btn btn-primary"><span class="title">Add to cart</span></button></a>
-					@endif
+				    
+					<a href="{{url('add-to-cart/show')}}"><button class="btn btn-primary"><i class="fa fa-cart-plus"></i></button></a>
+				
 		            </li>
 	             </ul>
 		    </nav>
@@ -112,9 +113,8 @@
 					 <input type="hidden" name="property_id" value="{{$property->id}}">
 						<div class="spss float-left fn-400" class="property_data">
 							<ul class="mb0">
-								<li class="list-inline-item"><a href="#"><span class="flaticon-transfer-1"></span></a></li>
-								<li class="list-inline-item"><a href="{{('wishlist/process')}}"><span class="flaticon-heart"></span></a></li>
-								<li class="list-inline-item"><a href="#"><span class="property_id"><i class="fas fa-cart-plus"></i></span></a></li>
+								
+								<button class="btn btn-primary"><span class="property_id">Add to cart</span></button></li>
 							</ul>
 						</div>
 						<div class="price text-right tal-400">

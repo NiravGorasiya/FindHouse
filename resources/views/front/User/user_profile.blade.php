@@ -98,13 +98,7 @@
                                 <sapn id="fbook" class="text-danger"></sapn>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                                <label for="formGroupExampleInput8">Instagram</label>
-                                <input type="text" class="form-control" name="instagram" value="{{$register->Instagram}}" id="instagram">
-                                <sapn id="insta" class="text-danger"></sapn>
-                            </div>
-                        </div>
+                       
 
                         <div class="col-xl-12">
                             <div class="my_profile_setting_textarea">
@@ -136,8 +130,7 @@ function edit(id) {
     });
 }
 function validate(){  
- var  username=document.myform.username.value;
- var email=document.myform.email.value;
+ 
  var firstname=document.myform.firstname.value;
  var lastname=document.myform.lastname.value;
  var mobile=document.myform.mobile.value;
@@ -146,33 +139,19 @@ function validate(){
  var state_id=document.myform.state_id.value;
  var city_id=document.myform.city_id.value;
  var facebook=document.myform.facebook.value;
- var instagram=document.myform.instagram.value;
  var about=document.myform.about.value;
 
  
 
   
-if (username==null ||username ==""){  
-    document.getElementById("uname").innerHTML="Please Enter any value";  
-    return false; 
-    }
-    else{  
-    document.getElementById("uname").innerHTML="";
-    }
-    if (email==null ||email ==""){  
-    document.getElementById("email").innerHTML="Please Enter any value";  
-    return false; 
-    }
-    else{  
-    document.getElementById("email").innerHTML="";
-    }   
+   
     if (firstname==null ||firstname ==""){  
     document.getElementById("fname").innerHTML="Please Enter firstname";  
     return false; 
     }
     else{  
-    //document.getElementById("fname").innerHTML="";
-    return false;
+    document.getElementById("fname").innerHTML="";
+    
     }   
     if (lastname==null ||lastname ==""){  
     document.getElementById("lname").innerHTML="Please Enter lastname";  

@@ -39,7 +39,7 @@ class UserController extends Controller
         $Register->state_id=$request->state_id;
         $Register->city_id=$request->city_id;
         $Register->facebook=$request->facebook;
-        $Register->instagram=$request->instagram;
+        
         $Register->about=$request->about;
         $Register->save();    
         return redirect('/user/profile');

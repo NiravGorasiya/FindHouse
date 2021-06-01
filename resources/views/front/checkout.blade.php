@@ -53,15 +53,15 @@
   
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
-                                <label class='control-label'>Name on Card</label> <input
-                                    class='form-control' size='4' type='text'>
+                                <label class='control-label'>Name on Card</label> 
+                                <input class='form-control' name="payment_name" size='4' type='text'>
                             </div>
                         </div>
   
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group card required'>
-                                <label class='control-label'>Card Number</label> <input
-                                    autocomplete='off' class='form-control card-num' size='20'
+                                <label class='control-label'>Card Number</label> 
+                                <input   autocomplete='off' name="card_number" class='form-control card-num' size='20'
                                     type='text'>
                             </div>
                         </div>
@@ -69,17 +69,17 @@
                         <div class='form-row row'>
                             <div class='col-xs-12 col-md-4 form-group cvc required'>
                                 <label class='control-label'>CVC</label> 
-                                <input autocomplete='off' class='form-control card-cvc' placeholder='e.g 415' size='4'
+                                <input autocomplete='off' class='form-control card-cvc' name="card_cvc" placeholder='e.g 415' size='4'
                                     type='text'>
                             </div>
                             <div class='col-xs-12 col-md-4 form-group expiration required'>
                                 <label class='control-label'>Expiration Month</label> <input
-                                    class='form-control card-expiry-month' placeholder='MM' size='2'
+                                    class='form-control card-expiry-month'  name="expirmonth" placeholder='MM' size='2'
                                     type='text'>
                             </div>
                             <div class='col-xs-12 col-md-4 form-group expiration required'>
                                 <label class='control-label'>Expiration Year</label> <input
-                                    class='form-control card-expiry-year' placeholder='YYYY' size='4'
+                                    class='form-control card-expiry-year' name="expireyear" placeholder='YYYY' size='4'
                                     type='text'>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
   
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-danger btn-lg btn-block" name="stripe" type="submit">Pay Now (₹100)</button>
+                                <button class="btn btn-danger btn-lg btn-block" name="amount" type="submit">{{$result->total_field_name}}</button>
                             </div>
                         </div>
                           

@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('payment', 'PayPalController@payment')->name('payment');
+Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
+Route::get('payment/success', 'PayPalController@success')->name('payment.success');
+//
 Route::get('/fb','RegisterController@fbbutton');
 Route::get('/fbsubmit','RegisterController@fbsubmit');
 Route::get('/fbres','RegisterController@fbres');
@@ -53,6 +57,14 @@ Route::get('/add-to-cart/show','AddtocartController@index');
 Route::get('stripe','AddtocartController@show');
 Route::get('/stripe-payment', 'AddtocartController@show');
 Route::post('/stripe-payment','AddtocartController@handlePost')->name('stripe.payment');
+Route::get('/paypal','AddtocartController@paypal');
+Route::get('/check-out','AddtocartController@index');
+Route::get('handle-payment', 'AddtocartController@handlePayment')->name('make.payment');
+Route::get('cancel-payment', 'AddtocartController@paymentCancel')->name('cancel.payment');
+Route::get('payment-success', 'AddtocartController@paymentSuccess')->name('success.payment');
+//checkout controller
+Route::get('payment-submit','AddtocartController@payment');
+
 //Register controller
 Route::post('register','RegisterController@register')->name('register'.'user');
 Route::get('/verification/{id}',"RegisterController@email_verification");

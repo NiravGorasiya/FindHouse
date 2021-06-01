@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Stripe;
 use Session;
 use DB;
+use App\Payment;
+use Srmklive\PayPal\Services\ExpressCheckout;
 
 
 class AddtocartController extends Controller
@@ -42,9 +44,17 @@ class AddtocartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function payment(Request $request)
+    {        
+        $input_data=$request->all();
+        $payment_method=$input_data['payment'];
+        if($payment_method=='stripe')
+        {
+            return redirect('/stripe');
+        }else
+        {
+            return redirect('/paypal');
+        }
     }
 
     /**
@@ -179,15 +189,88 @@ class AddtocartController extends Controller
     public function handlePost(Request $request)
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $id=session()->get('FRONT_USER_ID');
+        
+        $result = DB::table('addtocarts')
+                ->join('properties','addtocarts.property_id','properties.id')
+                ->select(DB::raw('SUM(properties.price) as total_field_name'))
+                ->where('addtocarts.user_id',$id)
+                ->first();
         Stripe\Charge::create ([
-                "amount" => 100 * 10,
+                "amount" => $result->total_field_name *100,
                 "currency" => "inr",
                 "source" => $request->stripeToken,
                 "description" => "Making test payment." 
         ]);
-        
+        $id=session()->get('FRONT_USER_ID');
+        $payment = new Payment;
+        $payment->payment_name=$request->payment_name;
+        $payment->user_id=$id;
+        $payment->card_number=$request->card_number;
+        $payment->card_cvc=$request->card_cvc;
+        $payment->expirmonth=$request->expirmonth;
+        $payment->expireyear=$request->expireyear;
+        $payment->currency =env('STRIPE_CURRENCY');
+        $payment->amount = $result->total_field_name;
+        $payment->save();
         Session::flash('success', 'Payment has been successfully processed.');
           
-        return back();
+        return redirect('/');
+    }
+    public function paypal()
+    {
+        $register=DB::table('registers')->first();
+        $id=session()->get('FRONT_USER_ID');
+        
+        $result = DB::table('addtocarts')
+                ->join('properties','addtocarts.property_id','properties.id')
+                ->select(DB::raw('SUM(properties.price) as total_field_name'))
+                ->where('addtocarts.user_id',$id)
+                ->first();
+
+         return view('front.paypal',compact('register','result'));
+    }
+    
+    public function handlePayment()
+    {
+        $product = [];
+        $product['items'] = [
+            [
+                'name' => 'Nike Joyride 2',
+                'price' => 112,
+                'desc'  => 'Running shoes for Men',
+                'qty' => 2
+            ]
+        ];
+  
+        $product['invoice_id'] = 1;
+        $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
+        $product['return_url'] = route('success.payment');
+        $product['cancel_url'] = route('cancel.payment');
+        $product['total'] = 224;
+  
+        $paypalModule = new ExpressCheckout;
+  
+        $res = $paypalModule->setExpressCheckout($product);
+        $res = $paypalModule->setExpressCheckout($product, true);
+        print_r($res);
+        echo "Hello";
+        // return redirect($res['paypal_link']);
+    }
+    public function paymentCancel()
+    {
+        dd('Your payment has been declend. The payment cancelation page goes here!');
+    }
+  
+    public function paymentSuccess(Request $request)
+    {
+        $paypalModule = new ExpressCheckout;
+        $response = $paypalModule->getExpressCheckoutDetails($request->token);
+  
+        if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
+            dd('Payment was successfull. The payment success page goes here!');
+        }
+  
+        dd('Error occured!');
     }
 }
