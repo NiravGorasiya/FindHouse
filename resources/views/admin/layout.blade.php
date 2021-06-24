@@ -16,7 +16,8 @@
 <link href="{{asset('asset_admin/images/favicon.ico')}}" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
 <link href="{{asset('asset_admin/images/favicon.ico')}}" sizes="128x128" rel="shortcut icon" />
 <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">	
 
 <style>
 	/* The switch - the box around the slider */
@@ -81,6 +82,7 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
 </style>
 </head>
 <body>
@@ -186,9 +188,19 @@ input:checked + .slider:before {
 		        	<li><a href="{{url('admin/listnew/property')}}"><i class="fa fa-circle"></i>List new Property </a></li>
 		        </ul>
 		 	</li>
-
+			 <li class="treeview">
+		        <a href="page-my-properties.html"><i class="flaticon-home"></i> <span>Order</span><i class="fa fa-angle-down pull-right"></i></a>
+		        <ul class="treeview-menu">
+		        	<li><a href="{{url('admin/order')}}"><i class="fa fa-circle"></i>Order</a></li>
+		        </ul>
+	    	</li>
+			<li class="treeview">
+		        <a href="page-my-properties.html"><i class="flaticon-home"></i> <span>Review</span><i class="fa fa-angle-down pull-right"></i></a>
+		        <ul class="treeview-menu">
+		        	<li><a href="{{url('admin/review')}}"><i class="fa fa-circle"></i>review</a></li>
+		        </ul>
+	    	</li>
 	   		<li class="title"><span>Manage Account</span></li>
-		    <li><a href="page-my-packages.html"><i class="flaticon-box"></i> <span>My Package</span></a></li>
 		    <li><a href="page-my-profile.html"><i class="flaticon-user"></i> <span>My Profile</span></a></li>
 		    <li><a href="page-login.html"><i class="flaticon-logout"></i> <span>Logout</span></a></li>
 	    </ul>
@@ -266,6 +278,8 @@ $(function() {
     });
 });
 </script>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script type="text/javascript" src="{{asset('asset_admin/js/jquery-3.3.1.js')}}"></script>

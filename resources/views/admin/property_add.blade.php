@@ -291,6 +291,9 @@
                     </ul>
                 </div>
             </div>
+        <div style="visibility:hidden; color:red; " id="chk_option_error">
+Please select at least one option.
+</div>
         </div>
         <div class="my_dashboard_review mt30">
             <div class="row">
@@ -612,5 +615,21 @@ if (planSize==null ||planSize ==""){
     document.getElementById("pSize").innerHTML="";
     }                                
 }  
+
+ function validate()
+{
+    var form_data = new FormData(document.querySelector("form"));
+    if(!form_data.has("amenities[]"))
+    {
+        document.getElementById("chk_option_error").style.visibility = "visible";
+    }
+    else
+    {
+        document.getElementById("chk_option_error").style.visibility = "hidden";
+    }
+    return false;
+}
+
+
 </script>
 @endsection

@@ -30,6 +30,7 @@ class StripeController extends Controller
         $payment = new Payment;
         $payment->payment_name=$request->payment_name;
         $payment->user_id=$id;
+        $payment->payment_method = "STRIPE";
         $payment->card_number=$request->card_number;
         $payment->card_cvc=$request->card_cvc;
         $payment->expirmonth=$request->expirmonth;

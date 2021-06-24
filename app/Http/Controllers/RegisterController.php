@@ -272,35 +272,6 @@ class RegisterController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
-    public function handleGoogleCallback()
-    {
-        try {
-  
-            $user = Socialite::driver('google')->user();
-   
-            $finduser = User::where('google_id', $user->id)->first();
-   
-            if($finduser){
-   
-                Auth::login($finduser);
-  
-                 return redirect('/home');
-            }else{
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id'=> $user->id
-                ]);
-  
-                Auth::login($newUser);
-   
-                return redirect()->back();
-            }
-  
-        } catch (Exception $e) {
-            return redirect('auth/google');
-        }
-    }
       
     public function fbbutton()
     {
@@ -322,6 +293,22 @@ class RegisterController extends Controller
             $register->save();
         }
         $request->session()->put('FRONT_USER_FACEBOOK_EMAIL',$fbUser->id);
+        return redirect('/');
+
+
+    }
+    Public function handleGoogleCallback(Request $request)
+    {
+        
+        $fbUser = Socialite::driver('google')->stateless()->user();
+        $finduser = Register::where('google_id', $fbUser->id)->first();
+        if(!$finduser){
+            $register=new Register;
+            $register->googleId=$fbUser->id;
+            $register->email=$fbUser->email;
+            $register->save();
+        }
+        $request->session()->put('FRONT_USER_GOOGLE_EMAIL',$fbUser->id);
         return redirect('/');
 
 

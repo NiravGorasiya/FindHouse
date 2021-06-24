@@ -11,17 +11,23 @@ $(document).on("ready",function() {
     var moneyFormat = wNumb({
         decimals: 0,
         thousand: ',',
-        prefix: '$'
+        prefix: '₹'
     });
     noUiSlider.create(rangeSlider, {
-        start: [0, 34000000],
+        start: [0, 23000],
         step: 1,
         range: {
-            'min': [52000],
-            '10%':[56000],
-            '20%':[58000],
-            '30%':[59000],
-             'max': [34000000]
+            'min':2000,
+            '10%':4000,
+            '20%':6000,
+            '30%':8000,
+            '40%':10000,
+            '50%':12000,
+            '60%':14000,
+            '70%':16000,
+            '80%':18000,
+            '90%':20000,
+             'max':23000
         },
         format: moneyFormat,
         connect: true
@@ -32,6 +38,6 @@ $(document).on("ready",function() {
         document.getElementById('slider-range-value1').innerHTML = values[0];
         document.getElementById('slider-range-value2').innerHTML = values[1];
         document.getElementsByName('min-value').value = moneyFormat.from(values[0]);
-        document.getElementsByName('max-value').value = moneyFormat.from(values[1]);
+        document.getElementsByName('min-value').value = moneyFormat.from(values[1]);
     });
 });

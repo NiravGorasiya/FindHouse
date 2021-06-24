@@ -27,13 +27,15 @@ class AddtocartController extends Controller
                ->join('registers','addtocarts.user_id','registers.id')
                
                ->select('addtocarts.*','properties.price','properties.image','properties.name')
-               ->where(['user_id'=>$id])
+               ->where(['user_id'=>$id,'addtocarts.status'=>'1'])
+
                 ->get();  
                
         $result = DB::table('addtocarts')
                 ->join('properties','addtocarts.property_id','properties.id')
                 ->select(DB::raw('SUM(properties.price) as total_field_name'))
                 ->where('addtocarts.user_id',$id)
+                ->where('addtocarts.status',1)
                 ->first();
             //  dd($result);   
      return view('front.Add_to_cart',compact('property','result'));   
@@ -53,7 +55,7 @@ class AddtocartController extends Controller
             return redirect('/stripe');
         }else
         {
-            return redirect('/paypal');
+            return redirect('/razorpay');
         }
     }
 
@@ -108,6 +110,7 @@ class AddtocartController extends Controller
         ->join('properties','addtocarts.property_id','properties.id')
         ->select(DB::raw('SUM(properties.price) as total_field_name'))
         ->where('addtocarts.user_id',$id)
+      
         ->first();
         return view('front.checkout',compact('result'));
     }
@@ -147,45 +150,7 @@ class AddtocartController extends Controller
     {
         
     }
-    public function charge(Request $request)
-    {
-        if ($request->input('stripeToken')) {
-  
-            $gateway = Omnipay::create('Stripe');
-            $gateway->setApiKey(env('STRIPE_SECRET_KEY'));
-           
-            $token = $request->input('stripeToken');
-           
-            $response = $gateway->purchase([
-                'amount' => $request->input('amount'),
-                'currency' => env('STRIPE_CURRENCY'),
-                'token' => $token,
-            ])->send();
-           
-            if ($response->isSuccessful()) {
-                // payment was successful: insert transaction data into the database
-                $arr_payment_data = $response->getData();
-                  
-                $isPaymentExist = Payment::where('payment_id', $arr_payment_data['id'])->first();
-           
-                if(!$isPaymentExist)
-                {
-                    $payment = new Payment;
-                    $payment->payment_id = $arr_payment_data['id'];
-                    $payment->payer_email = $request->input('email');
-                    $payment->amount = $arr_payment_data['amount']/100;
-                    $payment->currency = env('STRIPE_CURRENCY');
-                    $payment->payment_status = $arr_payment_data['status'];
-                    $payment->save();
-                }
-  
-                return "Payment is successful. Your payment id is: ". $arr_payment_data['id'];
-            } else {
-                // payment failed: display message to customer
-                return $response->getMessage();
-            }
-        }
-    }
+    
     public function handlePost(Request $request)
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -195,6 +160,8 @@ class AddtocartController extends Controller
                 ->join('properties','addtocarts.property_id','properties.id')
                 ->select(DB::raw('SUM(properties.price) as total_field_name'))
                 ->where('addtocarts.user_id',$id)
+                ->where('addtocarts.status',1)
+                ->where('addtocarts.status',1)
                 ->first();
         Stripe\Charge::create ([
                 "amount" => $result->total_field_name *100,
@@ -206,6 +173,7 @@ class AddtocartController extends Controller
         $payment = new Payment;
         $payment->payment_name=$request->payment_name;
         $payment->user_id=$id;
+        $payment->payment_method = "STRIPE";
         $payment->card_number=$request->card_number;
         $payment->card_cvc=$request->card_cvc;
         $payment->expirmonth=$request->expirmonth;
@@ -213,10 +181,17 @@ class AddtocartController extends Controller
         $payment->currency =env('STRIPE_CURRENCY');
         $payment->amount = $result->total_field_name;
         $payment->save();
+        
+        $addtocart = Addtocart::find($id);
+        $addtocart->status = "2";
+        $addtocart->save();    
+
+
         Session::flash('success', 'Payment has been successfully processed.');
           
         return redirect('/');
     }
+
     public function paypal()
     {
         $register=DB::table('registers')->first();
@@ -227,7 +202,7 @@ class AddtocartController extends Controller
                 ->select(DB::raw('SUM(properties.price) as total_field_name'))
                 ->where('addtocarts.user_id',$id)
                 ->first();
-
+         
          return view('front.paypal',compact('register','result'));
     }
     
@@ -253,9 +228,8 @@ class AddtocartController extends Controller
   
         $res = $paypalModule->setExpressCheckout($product);
         $res = $paypalModule->setExpressCheckout($product, true);
-        print_r($res);
-        echo "Hello";
-        // return redirect($res['paypal_link']);
+        
+         return redirect($res['paypal_link']);
     }
     public function paymentCancel()
     {

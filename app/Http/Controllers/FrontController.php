@@ -79,6 +79,8 @@ class FrontController extends Controller
                     ->orwhere('properties.bathrooms','LIKE',"%$str%")
                     ->orwhere('properties.garages','LIKE',"%$str%")
                     ->get();
+           
+                
             
             return view('front.index',compact('property'));           
         }
@@ -130,18 +132,6 @@ class FrontController extends Controller
 
         }
 
-       public function test(){
-           if($request->get('filter_price_start')!==null &&$request->get('filter_price_end')!==null){
-                 $filter_price_start=$request->get('filter price start');
-                 $filter_price_end=$request->get('filter price end');
-               
-              if($filter_price_start>0 && $filter_price_end>0){
-                  $query=$query1->whereBetween('properties.price',[$filter_price_start,$filter_price_end]);
-              }   
-              $query1= $query1->get();
-               prx($query1);
-           }
-       }
     
        public function contact(Request $request)
        {
@@ -170,5 +160,8 @@ class FrontController extends Controller
        {
            return view('front.review');
        }
+
+       
+      
 }
 

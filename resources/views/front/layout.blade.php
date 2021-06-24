@@ -50,7 +50,11 @@
 		            <li class="last">
 		                <a href="{{url('contact')}}"><span class="title">Contact</span></a>
 		            </li>
-                    @if(session()->has('FRONT_USER_LOGIN')!=null)
+                    @if(session()->has('FRONT_USER_LOGIN')!=null   )
+					<li><a href="{{url('logout')}}">Logout</a></li>
+					@elseif(session()->has('FRONT_USER_FACEBOOK_EMAIL')!=null  )
+					<li><a href="{{url('logout')}}">Logout</a></li>
+					@elseif(session()->has('FRONT_USER_GOOGLE_EMAIL')!=null  )
 					<li><a href="{{url('logout')}}">Logout</a></li>
 					@else
 					<li class="list-inline-item list_s"><a href="#" class="btn flaticon-user"  onclick="login()" data-toggle="modal" data-target=".bd-example-modal-lg"> 
@@ -62,6 +66,7 @@
 					@if(session()->has('FRONT_USER_EMAIL')!=null &&  Session::get('USER_TYPE')=="Buyer")
 	                <li class="list-inline-item add_listing"><a href="user/dashboard"><span class="flaticon-plus"></span><span class="dn-lg"> Create Listing</span></a></li>
 					@endif
+					
 					
 		        </ul>
 		    </nav>
@@ -114,10 +119,10 @@
 										</div>
 										<div class="row mt25">
 										<div class="col-lg-12">
-												<button type="button" class="btn btn-fb btn-block"><i class="fa fa-facebook float-left mt5"></i><a href="fbsubmit"> Login with Facebook</a></button>
+										<a href="fbsubmit"> <button type="button" class="btn btn-fb btn-block"><i class="fa fa-facebook float-left mt5"></i>Login with Facebook</button></a>
 											</div>
 											<div class="col-lg-12">
-												<button type="submit" class="btn btn-googl btn-block"><i class="fa fa-google float-left mt5"></i> Login with Google</button>
+											<a href="/google"><button type="button" class="btn btn-googl btn-block"><i class="fa fa-google float-left mt5"></i>Login with Google</button></a>
 											</div>
 										</div>
 										<hr>
@@ -203,7 +208,7 @@
 												<button type="button" class="btn btn-fb btn-block"><i class="fa fa-facebook float-left mt5"></i><a href="fbsubmit"> Login with Facebook</a></button>
 											</div>
 											<div class="col-lg-12">
-												<button type="submit" class="btn btn-googl btn-block"><i class="fa fa-google float-left mt5"></i> <a href="/google">Login with Google</a></button>
+												<button type="button" class="btn btn-googl btn-block"><i class="fa fa-google float-left mt5"></i> <a href="google">Login with Google</a></button>
 											</div>
 										</div>
 									
@@ -316,6 +321,10 @@
 			</ul>
 		</nav>
 	</div>
+	<form id="categoryfilter">
+	<input type="hidden" name="max-value" id="max-value">
+	<input type="hidden" name="min-value" id="min-value" >
+	</form>
 	<section class="home-one home1-overlay home1_bgi1">
 		<div class="container">
 			<div class="row posr">
@@ -1281,7 +1290,7 @@
 							<li class="list-inline-item"><a href="#"><i class="fa fa-google"></i></a></li>
 						</ul>
 						<h4>Subscribe</h4>
-						<form class="footer_mailchimp_form">
+						<form class="footer_mailchimp_form" >
 						 	<div class="form-row align-items-center">
 							    <div class="col-auto">
 							    	<input type="email" class="form-control mb-2" id="inlineFormInput" placeholder="Your email">
@@ -1392,6 +1401,11 @@ function funSearch(){
 	}
 }
 
+/*function funSearch(){
+	$('#max-value').val($('#slider-range-value1').html());
+	$('#min-value').val($('#slider-range-value2').html());
+	$('#categoryfilter').submit();
+}*/
 function login(){
 	jQuery('#popup_login').show();
 	jQuery('#popup_forgot').hide();

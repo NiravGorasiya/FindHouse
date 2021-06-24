@@ -89,7 +89,7 @@
                                 <div class='alert-danger alert'>Fix the errors before you begin.</div>
                             </div>
                         </div>
-  
+                         
                         <div class="row">
                             <div class="col-xs-12">
                                 <button class="btn btn-danger btn-lg btn-block" name="amount" type="submit">{{$result->total_field_name}}</button>

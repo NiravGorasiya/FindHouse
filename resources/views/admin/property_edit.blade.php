@@ -1,6 +1,5 @@
 @extends('admin.layout')
 @section('container')
-
 <link rel="stylesheet" type="text/css" href="{{ asset('asset_admin/css/multi_image.css') }}">
 <div class="col-lg-12 mb10">
     <div class="breadcrumb_content style2">
@@ -9,7 +8,7 @@
     </div>
 </div>
 <div class="col-lg-12">
-    <form method="post" action="{{url('admin/property/update/'.$property->id)}}" method="post" enctype="multipart/form-data">
+    <form method="post" action="{{url('admin/property/update/'.$property->id)}}" method="post" runat="server" enctype="multipart/form-data">
         @csrf
         <div class="my_dashboard_review">
             <div class="row">
@@ -365,10 +364,10 @@
                         <!--  -->
                         @foreach(explode(',',$property->image) as $images)
                         <div class="col-sm-3 col-3 mdimgUp">
-                        <div class="imagePreview " style="background-image: url({{ asset('images/product/'.$images)}})"></div>
+                        <div class="imagePreview " style="background-image: url({{ asset('images/product/'.$images)}})" id="blah" ></div>
                                 <!-- <img src="{{ asset('images/product/'.$images)}}" /> -->
                         <label class="btn btn-primary">
-                            Upload<input name="image[]" type="file" class="uploadFile img"   value="Upload Photo"
+                            Upload<input name="image[]" accept="image/*" type="file" class="uploadFile img"  onchange="readURL(this);"  id="imgInp" value="Upload Photo"
                                 style="width: 0px;height: 0px;overflow: hidden;" >
                         </label>
                         </div><!-- col-2 -->
@@ -384,7 +383,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="my_profile_setting_input">
-                        <center><button class="btn btn2 " style="text-align:center;" id="button" type="submit">ADD
+                        <center><button class="btn btn2 " style="text-align:center;" type="submit">ADD
                                 Property</button></center>
                     </div>
                 </div>
@@ -455,5 +454,11 @@ $(document).ready(function() {
 
     });
 });
+imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    blah.src = URL.createObjectURL(file)
+  }
+}
 </script>
 @endsection

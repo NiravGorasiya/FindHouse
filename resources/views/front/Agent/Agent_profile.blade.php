@@ -18,11 +18,11 @@
                     <div class="row">
                     <div class="col-lg-12">
                             <div class="wrap-custom-file" >
-                                <input type="file" name="profile" id="image1" accept=".gif, .jpg, .png" />
+                                <input type="file" name="profile" id="image1" onchange="readURL(this);" accept=".gif, .jpg, .png" />
                                 <label for="image1" id="imageasa1">
                                     <span><i class="flaticon-download" id="image1"></i> Upload Photo </span>
                                 </label>
-                                <img src="{{asset('profile/image/'.$Register->profile)}}"  width="260" height="253">
+                                <img src="{{asset('profile/image/'.$Register->profile)}}"  id="blah"  width="260" height="253">
                             </div>
                             <p>*minimum 260px x 260px</p>
                         </div>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="col-xl-12 text-right">
                             <div class="my_profile_setting_input">
-                                <button class="btn btn1" onclick="nirav()">View Public Profile</button>
+                                <button class="btn btn1">View Public Profile</button>
                                 <button class="btn btn2">Update Profile</button>
                             </div>
                         </div>
@@ -210,6 +210,18 @@ function validate(){
     } 
 
 }  
+function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
 
 @endsection

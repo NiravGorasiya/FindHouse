@@ -184,6 +184,8 @@ class PropertyController extends Controller
      */
     public function update(Request $request, Property $property,$id)
     {
+        $input = $request->all();
+  
         $property=Property::find($id);
         $property->type=$request->type;
         $property->name=$request->name;
@@ -215,7 +217,7 @@ class PropertyController extends Controller
         $property->p_price=$request->p_price;
         $property->p_size=$request->p_size;
         
-        $file=$request->file('image');
+      if(  $file=$request->file('image')){
         $product_img='';
         for($i=0;$i<sizeof($file);$i++)
         {
@@ -230,6 +232,10 @@ class PropertyController extends Controller
         }
         $product_img=rtrim($product_img,',');
         $property->image = $product_img;
+    }else
+      {
+        unset($input['image']);
+      }  
         $property->save();
         return redirect('/admin/list/property');
     }

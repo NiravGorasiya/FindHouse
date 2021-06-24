@@ -10,9 +10,31 @@
 <link rel="stylesheet" href="{{asset('asset_front/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('asset_front/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('asset_front/css/responsive.css')}}">
-<title>Add to cart</title>
+<title>Strip</title>
 <link href="{{asset('asset_front/images/favicon.ico')}}" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
 <link href="{{asset('asset_front/images/favicon.ico')}}" sizes="128x128" rel="shortcut icon" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <style type="text/css">
+        .container {
+            margin-top: 40px;
+        }
+        .panel-heading {
+        display: inline;
+        font-weight: bold;
+        }
+        .flex-table {
+            display: table;
+        }
+        .display-tr {
+            display: table-row;
+        }
+        .display-td {
+            display: table-cell;
+            vertical-align: middle;
+            width: 55%;
+        }
+    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -49,7 +71,9 @@
 					<a href="{{url('contact')}}"><span class="title">Contact</span></a>
 		            </li>
 					<li class="last">
-					<a href="{{url('add-to-cart/show')}}"><span class="title">Add to cart</span></a>
+				    
+					<a href="{{url('add-to-cart/show')}}"><button class="btn btn-primary"><i class="fa fa-cart-plus"></i></button></a>
+				
 		            </li>
 	             </ul>
 		    </nav>
@@ -78,11 +102,13 @@
 		    </div>
 		</div>
 	</div>
+
+	<!-- Main Header Nav For Mobile -->
 	<div id="page" class="stylehome1 h0">
 		<div class="mobile-menu">
 			<div class="header stylehome1">
 				<div class="main_logo_home2 text-center">
-		            <img class="nav_logo_img img-fluid mt20" src="{{asset('asset_front/images/header-logo2.png')}}" alt="header-logo2.png">
+		            <img class="nav_logo_img img-fluid mt20" src="images/header-logo2.png" alt="header-logo2.png">
 		            <span class="mt20">FindHouse</span>
 				</div>
 				<ul class="menu_bar_home2">
@@ -90,7 +116,7 @@
 					<li class="list-inline-item"><a href="#menu"><span></span></a></li>
 				</ul>
 			</div>
-		</div>
+		</div><!-- /.mobile-menu -->
 		<nav id="menu" class="stylehome1">
 			<ul>
 				<li><span>Home</span>
@@ -106,6 +132,49 @@
 	                    <li><a href="index9.html">Home 9</a></li>
 	                    <li><a href="index10.html">Home 10</a></li>
 	                </ul>
+				</li>
+				<li><span>Listing</span>
+					<ul>
+						<li><span>Listing Grid</span>
+							<ul>
+	                            <li><a href="page-listing-grid-v1.html">Grid v1</a></li>
+	                            <li><a href="page-listing-grid-v2.html">Grid v2</a></li>
+	                            <li><a href="page-listing-grid-v3.html">Grid v3</a></li>
+	                            <li><a href="page-listing-grid-v4.html">Grid v4</a></li>
+	                            <li><a href="page-listing-grid-v5.html">Grid v5</a></li>
+	                            <li><a href="page-listing-full-width-grid.html">Grid Fullwidth</a></li>
+							</ul>
+						</li>
+						<li><span>Listing Style</span>
+							<ul>
+	                            <li><a href="page-listing-parallax.html">Parallax Style</a></li>
+	                            <li><a href="page-listing-slider.html">Slider Style</a></li>
+	                            <li><a href="page-listing-map.html">Map Header</a></li>
+							</ul>
+						</li>
+						<li><span>Listing Half</span>
+							<ul>
+	                            <li><a href="page-listing-half-map-v1.html">Map V1</a></li>
+	                            <li><a href="page-listing-half-map-v2.html">Map V2</a></li>
+	                            <li><a href="page-listing-half-map-v3.html">Map V3</a></li>
+	                            <li><a href="page-listing-half-map-v4.html">Map V4</a></li>
+							</ul>
+						</li>
+						<li><span>Agent View</span>
+							<ul>
+	                            <li><a href="page-listing-agent-v1.html">Agent V1</a></li>
+	                            <li><a href="page-listing-agent-v2.html">Agent V2</a></li>
+	                            <li><a href="page-listing-agent-v3.html">Agent Details</a></li>
+							</ul>
+						</li>
+						<li><span>Agencies View</span>
+							<ul>
+	                            <li><a href="page-agencies-list-v1.html">Agencies V1</a></li>
+	                            <li><a href="page-agencies-list-v2.html">Agencies V2</a></li>
+	                            <li><a href="page-agencies-list-v3.html">Agencies Details</a></li>
+							</ul>
+						</li>
+					</ul>
 				</li>
 				<li><span>Property</span>
 					<ul>
@@ -127,6 +196,37 @@
 						</li>
 					</ul>
 				</li>
+				<li><span>Blog</span>
+					<ul>
+	                    <li><a href="page-blog-v1.html">Blog List 1</a></li>
+	                    <li><a href="page-blog-grid.html">Blog List 2</a></li>
+	                    <li><a href="page-blog-single.html">Single Post</a></li>
+					</ul>
+				</li>
+				<li><span>Pages</span>
+					<ul>
+						<li><span>Shop</span>
+							<ul>
+			                    <li><a href="page-shop.html">Shop</a></li>
+			                    <li><a href="page-shop-single.html">Shop Single</a></li>
+			                    <li><a href="page-shop-cart.html">Cart</a></li>
+			                    <li><a href="page-shop-checkout.html">Checkout</a></li>
+			                    <li><a href="page-shop-order.html">Order</a></li>
+							</ul>
+						</li>
+		                <li><a href="page-about.html">About Us</a></li>
+		                <li><a href="page-gallery.html">Gallery</a></li>
+		                <li><a href="page-faq.html">Faq</a></li>
+		                <li><a href="page-login.html">LogIn</a></li>
+		                <li><a href="page-compare.html">Membership</a></li>
+		                <li><a href="page-compare2.html">Membership 2</a></li>
+	                    <li><a href="page-register.html">Register</a></li>
+		                    <li><a href="page-service.html">Service</a></li>
+		                <li><a href="page-error.html">404 Page</a></li>
+		                <li><a href="page-terms.html">Terms and Conditions</a></li>
+		                <li><a href="page-ui-element.html">UI Elements</a></li>
+					</ul>
+				</li>
 				<li><a href="page-contact.html">Contact</a></li>
 				<li><a href="page-login.html"><span class="flaticon-user"></span> Login</a></li>
 				<li><a href="page-register.html"><span class="flaticon-edit"></span> Register</a></li>
@@ -134,76 +234,82 @@
 			</ul>
 		</nav>
 	</div>
-	<section class="shop-checkouts bgc-f7">
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-6">
-					<div class="breadcrumb_content style2">
-						<ol class="breadcrumb">
-						    <li class="breadcrumb-item"><a href="#">Home</a></li>
-						    <li class="breadcrumb-item active text-thm" aria-current="page">Cart</li>
-						</ol>
-						<h4 class="breadcrumb_title">Cart</h4>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xl-8">
-				<div class="table-responsive mt0">
-                <table id="users-table" class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th >Id</tH>
-                            <th>image</th>
-                            <th>price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    @foreach($property as $list)
-					@if($list->image!="")
-					<?php
-					$img=explode(',',$list->image)
-					?>
-                    <tbody>
-                        <tr>
-                             <td>{{$list->id}}</td>
-                             <td><img src="{{asset('images/product/'.$img[0])}}" width="100" height="100"></td>
-                             <td>{{$list->price}}</td>
-                            <td>
-                                <ul class="view_edit_delete_list mb0">
-								        <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Delete"><a href="javascript:void(0)" onclick="destroy({{$list->id}})"><span class="flaticon-garbage"></span></a></li>
-						    	</ul>         
-                            </td>
-                        </tr>
-						
-                    </tbody>
-					
-					@endif
-                    @endforeach
-                </table>
-				<hr>
-            </div>
-				</div>
-				<div class="col-xl-4">
-				<form action="{{url('payment-submit')}}" >
-					<div class="order_sidebar_widget style2">
-						<h4 class="title">Cart Totals</h4>
-						<ul>
-						
-							<li class="subtitle"><p>Total <span class="float-right totals color-orose">₹{{$result->total_field_name}}</span></p></li>
-						</ul>
-						
-						<input type="radio" name="payment" value="stripe" checked>&nbsp;Stripe</br>
-						<input type="radio" name="payment" value="razorpay">&nbsp;Razorpay </br>
-						<div class="ui_kit_button payment_widget_btn">
-							<button type="submit" class="btn dbxshad btn-lg btn-thm btn-block">Proceed to checkout</button>
-						</div>
-					</div>
-			   </form>		
-				</div>
-			</div>
-		</div>
-	</section>
+	<div class="container">  
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row text-center">
+                        <h3 class="panel-heading">Payment Details</h3>
+                    </div>                    
+                </div>
+                <div class="panel-body">
+  
+                    @if (Session::has('success'))
+                        <div class="alert alert-success text-center">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <p>{{ Session::get('success') }}</p>
+                        </div>
+                    @endif
+  
+                    <form role="form" action="{{ route('stripe.payment') }}" method="post" class="validation"
+                                                     data-cc-on-file="false"
+                                                    data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
+                                                    id="payment-form">
+                        @csrf
+  
+                        <div class='form-row row'>
+                            <div class='col-xs-12 form-group required'>
+                                <label class='control-label'>Name on Card</label> 
+                                <input class='form-control' name="payment_name" size='4' type='text'>
+                            </div>
+                        </div>
+  
+                        <div class='form-row row'>
+                            <div class='col-xs-12 form-group card required'>
+                                <label class='control-label'>Card Number</label> 
+                                <input   autocomplete='off' name="card_number" class='form-control card-num' size='20'
+                                    type='text'>
+                            </div>
+                        </div>
+  
+                        <div class='form-row row'>
+                            <div class='col-xs-12 col-md-4 form-group cvc required'>
+                                <label class='control-label'>CVC</label> 
+                                <input autocomplete='off' class='form-control card-cvc' name="card_cvc" placeholder='e.g 415' size='4'
+                                    type='text'>
+                            </div>
+                            <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                <label class='control-label'>Expiration Month</label> <input
+                                    class='form-control card-expiry-month'  name="expirmonth" placeholder='MM' size='2'
+                                    type='text'>
+                            </div>
+                            <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                <label class='control-label'>Expiration Year</label> <input
+                                    class='form-control card-expiry-year' name="expireyear" placeholder='YYYY' size='4'
+                                    type='text'>
+                            </div>
+                        </div>
+  
+                        <div class='form-row row'>
+                            <div class='col-md-12 hide error form-group'>
+                                <div class='alert-danger alert'>Fix the errors before you begin.</div>
+                            </div>
+                        </div>
+  
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button class="btn btn-danger btn-lg btn-block" name="amount" type="submit"></button>
+                            </div>
+                        </div>
+                          
+                    </form>
+                </div>
+            </div>        
+        </div>
+    </div>
+    </div>
+
 	<section class="footer_one">
 		<div class="container">
 			<div class="row">
@@ -229,7 +335,7 @@
 					<div class="footer_contact_widget">
 						<h4>Contact Us</h4>
 						<ul class="list-unstyled">
-							<li><a href="#"><span class="__cf_email__" data-cfemail="ee87808881ae8887808a86819b9d8bc08d8183">[email&#160;protected]</span></a></li>
+							<li><a href="#"><span class="__cf_email__" data-cfemail="2940474f46694f40474d41465c5a4c074a4644">[email&#160;protected]</span></a></li>
 							<li><a href="#">Collins Street West, Victoria</a></li>
 							<li><a href="#">8007, Australia.</a></li>
 							<li><a href="#">+1 246-345-0699</a></li>
@@ -306,6 +412,61 @@
 <script type="text/javascript" src="{{asset('asset_front/js/progressbar.js')}}"></script>
 <script type="text/javascript" src="{{asset('asset_front/js/slider.js')}}"></script>
 <script type="text/javascript" src="{{asset('asset_front/js/timepicker.js')}}"></script>
+<script type="text/javascript" src="{{asset('asset_front/js/googlemaps1.js')}}"></script>
 <script type="text/javascript" src="{{asset('asset_front/js/script.js')}}"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  
+<script type="text/javascript">
+$(function() {
+    var $form         = $(".validation");
+  $('form.validation').bind('submit', function(e) {
+    var $form         = $(".validation"),
+        inputVal = ['input[type=email]', 'input[type=password]',
+                         'input[type=text]', 'input[type=file]',
+                         'textarea'].join(', '),
+        $inputs       = $form.find('.required').find(inputVal),
+        $errorStatus = $form.find('div.error'),
+        valid         = true;
+        $errorStatus.addClass('hide');
+ 
+        $('.has-error').removeClass('has-error');
+    $inputs.each(function(i, el) {
+      var $input = $(el);
+      if ($input.val() === '') {
+        $input.parent().addClass('has-error');
+        $errorStatus.removeClass('hide');
+        e.preventDefault();
+      }
+    });
+  
+    if (!$form.data('cc-on-file')) {
+      e.preventDefault();
+      Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+      Stripe.createToken({
+        number: $('.card-num').val(),
+        cvc: $('.card-cvc').val(),
+        exp_month: $('.card-expiry-month').val(),
+        exp_year: $('.card-expiry-year').val()
+      }, stripeHandleResponse);
+    }
+  
+  });
+  
+  function stripeHandleResponse(status, response) {
+        if (response.error) {
+            $('.error')
+                .removeClass('hide')
+                .find('.alert')
+                .text(response.error.message);
+        } else {
+            var token = response['id'];
+            $form.find('input[type=text]').empty();
+            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+            $form.get(0).submit();
+        }
+    }
+  
+});
+</script>
 </body>
 </html>

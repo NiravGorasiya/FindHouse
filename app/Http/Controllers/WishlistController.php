@@ -40,7 +40,8 @@ class WishlistController extends Controller
         $property_id=$request->property_id;   
         $user_id=session()->get('FRONT_USER_ID');
         if($user_id){
-            if(Wishlist::where('user_id',$user_id)->where('property_id',$property_id)->exists())
+        
+        if(Wishlist::where('user_id',$user_id)->where('property_id',$property_id)->exists())
             {
                 return response()->json(['status'=>'property is already add  to wishlist']);
             }

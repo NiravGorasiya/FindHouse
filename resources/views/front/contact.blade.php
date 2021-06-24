@@ -13,6 +13,12 @@
 <title>Contact</title>
 <link href="{{asset('asset_front/images/favicon.ico')}}" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
 <link href="{{asset('asset_front/images/favicon.ico')}}" sizes="128x128" rel="shortcut icon" />
+<style>
+   #map {
+  height: 400px;
+  width: 100%;
+}
+</style>
 </head>
 <body>
 <div class="wrapper">
@@ -189,6 +195,10 @@
 			</div>
 		</div>
 	</section>
+    <div class="container">
+	<h2>Our Location</h2>
+	<div id="map"></div>
+	</div>
 	<section class="our-contact pb0 bgc-f7">
 		<div class="container">
 			<div class="row">
@@ -252,11 +262,6 @@
 							<h5>Skype</h5>
 							<p>findhouse.com</p>
 						</div>
-						<!-- <h5>Follow Us</h5>
-						<ul class="contact_form_social_area">
-							<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li class="list-inline-item"><a href="#"><i class="fa fa-google"></i></a></li>
-						</ul> -->
 					</div>
 				</div>
 			</div>
@@ -267,7 +272,7 @@
 			<div class="row">
 				<div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 pr0 pl0">
 					<div class="footer_about_widget">
-						<h4>About Site</h4>
+							<h4>About Site</h4>
 						<p>We’re reimagining how you buy, sell and rent. It’s now easier to get into a place you love. So let’s do this, together.</p>
 					</div>
 				</div>
@@ -389,5 +394,4 @@ $('#frmcontact').submit(function(e){
 });
 </script>
 </body>
-
 </html>

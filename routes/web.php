@@ -12,14 +12,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('p','front.user.p');
 
-Route::get('payment', 'PayPalController@payment')->name('payment');
+
+Route::view('/bulksms', 'bulksms');
+Route::post('/bulksms', 'BulkSmsController@sendSms');
+
+Route::view('welcome','front.welcome');
+
 Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
 Route::get('payment/success', 'PayPalController@success')->name('payment.success');
-//
-Route::get('/fb','RegisterController@fbbutton');
-Route::get('/fbsubmit','RegisterController@fbsubmit');
-Route::get('/fbres','RegisterController@fbres');
+
+
 Route::get('email','RegisterController@index');
 //agent
 Route::get('agent/profile','AgentController@index');
@@ -64,7 +68,10 @@ Route::get('cancel-payment', 'AddtocartController@paymentCancel')->name('cancel.
 Route::get('payment-success', 'AddtocartController@paymentSuccess')->name('success.payment');
 //checkout controller
 Route::get('payment-submit','AddtocartController@payment');
-
+Route::view('test','test');
+//facebook login
+Route::get('/fbsubmit','RegisterController@fbsubmit');
+Route::get('/fbres','RegisterController@fbres');
 //Register controller
 Route::post('register','RegisterController@register')->name('register'.'user');
 Route::get('/verification/{id}',"RegisterController@email_verification");
@@ -78,6 +85,8 @@ Route::get('logout',function(){
        session()->forget('FRONT_USER_USERNAME');
        session()->forget('FRONT_USER_EMAIL');
        session()->forget('FRONT_USER_ID');
+       session()->forget('FRONT_USER_FACEBOOK_EMAIL');
+       session()->forget('FRONT_USER_GOOGLE_EMAIL');
        return redirect('/');
 });
 
@@ -89,6 +98,11 @@ Route::post("saved-files","DocumentController@store")->name('saved-files');
 Route::get('/create','DocumentController@index');
 Route::get('/view/{id}','DocumentController@show');
 Route::get('/download/{file}','DocumentController@download');
+
+//Razorpay controller
+Route::get('razorpay', 'RazorpayController@razorpay')->name('razorpay');
+Route::post('razorpaypayment', 'RazorpayController@payment')->name('payment');
+
 //admin login
 Route::get('admin',"AdminController@index");
 Route::post('admin','AdminController@auth')->name('admin.auth');
@@ -101,7 +115,6 @@ Route::group(['middleware'=>'admin_auth'],function(){
               return redirect('admin');
        });
 });       
-
 Route::get('admin/updatepassword','AdminController@updatepassword');
 //propertytype
 Route::get('admin/propertype',"PropertyTypeController@index");
@@ -147,7 +160,9 @@ Route::post('admin/property/update/{id}','PropertyController@update');
 Route::post('property/add','PropertyController@store')->name('admin/property/add');
 Route::delete('Property/Delete/{id}',"PropertyController@destroy")->name('property.delete');
 Route::get('propertyChangeStatus', 'PropertyController@ChangeStatus');
-
-
-
+//order details
+Route::get('admin/order','Ordercontroller@index');
+//Review 
+Route::get('admin/review','Dashboardcontroller@review');
+Route::get('/changeStatus', 'Dashboardcontroller@changeStatus');
 
